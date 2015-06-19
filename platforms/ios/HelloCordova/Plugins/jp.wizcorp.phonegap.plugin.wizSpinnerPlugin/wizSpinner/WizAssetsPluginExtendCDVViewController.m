@@ -112,7 +112,6 @@
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
                 
-                spinnerHolder.transform = CGAffineTransformMakeRotation(0.0);
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
                 
                 for (UITextView*textView in spinnerHolder.subviews) {
@@ -125,7 +124,6 @@
                 // upside down
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
-                spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(180)); // 180 degrees
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
@@ -138,12 +136,11 @@
                 // landscape to left
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
-                spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(90)); // 90 degress
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
-                    if (textView.tag == 46) {                        
-                        [textView setCenter:CGPointMake(spinnerHolder.bounds.size.width/2, spinnerHolder.bounds.size.height/0.9)];
+                    if (textView.tag == 46) {
+                        [textView setCenter:CGPointMake(spinnerHolder.bounds.size.width/2, spinnerHolder.bounds.size.height/0.95)];
                     }
                 }
                 
@@ -151,21 +148,17 @@
                 // landscape to right
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
-                spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(-90)); // 270 degrees
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
                     if (textView.tag == 46) {
-                        [textView setCenter:CGPointMake(spinnerHolder.bounds.size.width/2, spinnerHolder.bounds.size.height/0.9)];
+                        [textView setCenter:CGPointMake(spinnerHolder.bounds.size.width/2, spinnerHolder.bounds.size.height/0.95)];
                     }
                 }
                 
             }    
         }
     }
-    
-
-    
     
     return NULL;
 }
@@ -407,10 +400,7 @@
     
     
     int orientation = [UIApplication sharedApplication].statusBarOrientation;
-    
-    if (orientation != 1) {
-        [self rotateCustomLoader:orientation];
-    }
+    [self rotateCustomLoader:orientation];
 
     
     for (UIView*spinnerHolder in [UIApplication sharedApplication].keyWindow.subviews) {
@@ -532,7 +522,7 @@
     backgroundScreen.tag = 47;
     backgroundScreen.alpha = opacity;
     [backgroundScreen setClipsToBounds:TRUE];
-    [backgroundScreen setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [backgroundScreen setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [backgroundScreen setContentMode:UIViewContentModeScaleToFill];
     
     
@@ -621,7 +611,7 @@
     UITextView *loaderStatus = [[UITextView alloc] initWithFrame:spinnerHolder.bounds];
     [loaderStatus setTag:46];
     [loaderStatus setTextAlignment:UITextAlignmentCenter];
-    [loaderStatus setFont:[UIFont italicSystemFontOfSize:10.0]];
+    [loaderStatus setFont:[UIFont boldSystemFontOfSize:16.0]];
     [loaderStatus setBackgroundColor:([UIColor clearColor])];
     [loaderStatus setScrollEnabled:FALSE];
     [loaderStatus setUserInteractionEnabled:FALSE];
@@ -658,6 +648,8 @@
     [spinnerHolder addSubview:loaderStatus];
     [spinnerHolder addSubview:appleSpinner];
     
+    int orientation = [UIApplication sharedApplication].statusBarOrientation;
+    [self rotateCustomLoader:orientation];
     
     // After these release messages are sent, the objects remain allocated
     // (with a retainCount of 1) for as long as they have a superview.
