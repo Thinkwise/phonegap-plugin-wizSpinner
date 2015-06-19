@@ -111,7 +111,9 @@
                 // portrait normal
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
-                
+                if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+                    spinnerHolder.transform = CGAffineTransformMakeRotation(0.0);
+                }
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
                 
                 for (UITextView*textView in spinnerHolder.subviews) {
@@ -124,6 +126,9 @@
                 // upside down
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
+                if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+                    spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(180)); // 180 degrees
+                }
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
@@ -136,6 +141,9 @@
                 // landscape to left
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
+                if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+                    spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(90)); // 90 degress
+                }
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
@@ -148,6 +156,9 @@
                 // landscape to right
                 
                 [spinnerHolder setAutoresizesSubviews:YES];
+                if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+                    spinnerHolder.transform = CGAffineTransformMakeRotation(degreesToRadians(-90)); // 270 degrees
+                }
                 [spinnerHolder setFrame:CGRectMake([UIApplication sharedApplication].keyWindow.bounds.origin.x, [UIApplication sharedApplication].keyWindow.bounds.origin.y, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height)];
 
                 for (UITextView*textView in spinnerHolder.subviews) {
