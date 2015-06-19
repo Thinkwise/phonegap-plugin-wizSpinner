@@ -73,7 +73,7 @@ public class WizSpinner {
 	public static void hide(Activity activity) {
 		// Hide the spinner
 		if ( isVisible ) {
-			Log.i("wizSpinner", "[Hiding spinner] ******* ");
+			Log.i(TAG, "[Hiding spinner] ******* ");
 			
 			activity.runOnUiThread(
 				new Runnable() {
