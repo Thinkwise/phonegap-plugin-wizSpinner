@@ -6,7 +6,12 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.util.Log;
+import android.view.WindowManager;
+import android.widget.TextView;
+
+import com.thinkwisesoftware.mobiletest.R;
 
 public class WizSpinner {
 
@@ -52,7 +57,11 @@ public class WizSpinner {
 			activity.runOnUiThread(
 				new Runnable() {
 					public void run() {
-						pd = ProgressDialog.show(_ctx, null, labelText, true, false);
+						pd = new ProgressDialog(_ctx);
+						pd.show();
+						pd.setCancelable(false);
+						pd.setContentView(R.layout.progressdialog);
+						updateText(labelText);
 					}
 				}
 			);
@@ -63,7 +72,7 @@ public class WizSpinner {
 			activity.runOnUiThread(
 				new Runnable() {
 					public void run() {
-						pd.setMessage(labelText);
+						updateText(labelText);
 					}
 				}
 			);
@@ -84,5 +93,10 @@ public class WizSpinner {
 			);
 			isVisible = false;
 		}
+	}
+
+	public static void updateText(String message) {
+		TextView textView = (TextView) pd.findViewById(R.id.progressMessage);
+		textView.setText(message);
 	}
 }
