@@ -210,6 +210,12 @@ static NSDictionary *defaults = nil;
 {
     WizLog(@"******************************************show shown var = %i", shown);
 
+    // Reset the timer because the user wants to show it again (or is updating text)
+    if (timeout) {
+        [timeout invalidate];
+        timeout = nil;
+    }
+
     int timeoutInt = 20;
     
     NSDictionary *options;
