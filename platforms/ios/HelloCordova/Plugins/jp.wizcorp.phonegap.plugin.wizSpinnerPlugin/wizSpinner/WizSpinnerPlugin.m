@@ -209,9 +209,7 @@ static NSDictionary *defaults = nil;
 - (void)show:(CDVInvokedUrlCommand*)command
 {
     WizLog(@"******************************************show shown var = %i", shown);
-    if (shown) {
-        return;
-    }
+
     int timeoutInt = 20;
     
     NSDictionary *options;
