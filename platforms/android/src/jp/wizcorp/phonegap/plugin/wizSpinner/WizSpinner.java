@@ -6,12 +6,9 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-import com.thinkwisesoftware.mobiletest.R;
 
 public class WizSpinner {
 
@@ -47,43 +44,48 @@ public class WizSpinner {
 				}
 			}
 		}
-		
+
 		final String labelText = text;
 		final Activity _ctx = activity;
-		
+		final String packageName = activity.getApplication().getPackageName();
+		final Resources resources = activity.getApplication().getResources();
+		// Get the progressdialog's and progressMessage's identifiers using the resources of the current application.
+		final int progressDialog = resources.getIdentifier("progressdialog", "layout", packageName);
+		final int progressMessage = resources.getIdentifier("progressMessage", "id", packageName);
+
 		if ( !isVisible ) {
 			Log.i(TAG, "[display spinner] ******* ");
-			
+
 			activity.runOnUiThread(
 				new Runnable() {
 					public void run() {
 						pd = new ProgressDialog(_ctx);
 						pd.show();
 						pd.setCancelable(false);
-						pd.setContentView(R.layout.progressdialog);
-						updateText(labelText);
+						pd.setContentView(progressDialog);
+						updateText(labelText, progressMessage);
 					}
 				}
 			);
-			
+
 			isVisible = true;
 		} else {
 			// Update the text when the loader is already visible.
 			activity.runOnUiThread(
 				new Runnable() {
 					public void run() {
-						updateText(labelText);
+						updateText(labelText, progressMessage);
 					}
 				}
 			);
 		}
 	}
-	
+
 	public static void hide(Activity activity) {
 		// Hide the spinner
 		if ( isVisible ) {
 			Log.i(TAG, "[Hiding spinner] ******* ");
-			
+
 			activity.runOnUiThread(
 				new Runnable() {
 					public void run() {
@@ -95,8 +97,8 @@ public class WizSpinner {
 		}
 	}
 
-	public static void updateText(String message) {
-		TextView textView = (TextView) pd.findViewById(R.id.progressMessage);
+	private static void updateText(String message, int progressMessage) {
+		TextView textView = (TextView) pd.findViewById(progressMessage);
 		textView.setText(message);
 	}
 }
