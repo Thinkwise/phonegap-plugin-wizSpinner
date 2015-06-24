@@ -9,13 +9,13 @@ PhoneGap plugin for creating and manipulating native loader/spinner above Cordov
 *NOTE* - Android is portrait only, barebones (many iOS features yet to be implemented T-T)
 
 # Install (iOS & Android with Plugman) 
-
-	cordova plugin add https://github.com/Wizcorp/phonegap-plugin-wizSpinner
-
+```
+cordova plugin add https://github.com/Wizcorp/phonegap-plugin-wizSpinner
+```
 # Example Code
 
 Example options for APIs
-<pre><code>
+```
     position	:	"low" / "middle" / "high" - default "middle"
 	position of spinner.
             
@@ -56,55 +56,56 @@ Example options for APIs
 
     spinDuration	:	1.0 - default is equal to the number of images in the custom spinner 	multiplied by 1/30th of a second. Thus, if you had 30 images, the value would be 1 second.
 	float indicating the time duration measured in seconds
-</code></pre>
+```
 
 **Create spinner**
-
-	wizSpinner.create(JSONObject options);
-
+```JavaScript
+wizSpinner.create(JSONObject options);
+```
 **Show spinner**
-
-	wizSpinner.show(JSONObject options);
-
+```JavaScript
+wizSpinner.show(JSONObject options);
+```
 **Hide spinner**<br />
-	
-	wizSpinner.hide(); 
+```JavaScript
+wizSpinner.hide(); 
+```
 
 **Rotate spinner**
 
 This is handled by PhoneGap event listener, though you can force this if you wish.
-
-	wizSpinner.rotate(Int orientation);
-
-Add this code to manually configure orientations
-	
-	function shouldRotateToOrientation (orientation) {
-  		if (deviceIsReady == true) {
-    		switch (orientation) {
-        		case 0:
-            		// portrait normal
-            		window.wizSpinner.rotate(1);
-            		return true;
-            	break;
-        		case 90:
-            		// landscape left
-            		window.wizSpinner.rotate(3);
-            		return true;
-            	break;
-        		case -90:
-       				 // landscape right
-            		window.wizSpinner.rotate(4);
-            		return true;
-            	break;
-        		case 180:
-        			// portrait upside down
-            		return false;
-            	break;
-    		}
-    	}
-	}
-
-
-	function onDeviceReady() {
-   		deviceIsReady = true;
-	}
+```JavaScript
+wizSpinner.rotate(Int orientation);
+```
+Add this code to manually configure orientations.
+Note that this only should be applied for iOS. 
+```JavaScript
+document.addEventListener("deviceready", function () {
+   var updateRotation = function (orientation) {
+        switch (orientation) {
+            case 0:
+                // portrait normal
+                wizSpinner.rotate(1);
+                break;
+            case 90:
+                // landscape left
+                wizSpinner.rotate(3);
+                break;
+            case -90:
+                // landscape right
+                wizSpinner.rotate(4);
+                break;
+            case 180:
+                // portrait upside down
+                wizSpinner.rotate(2);
+                break;
+        }
+    };
+    // Set initial rotation
+    updateRotation(window.orientation);
+    // Bind to the orientation change event and proxy it to the WizSpinner plugin.
+    window.addEventListener("orientationchange", function () {
+        updateRotation(window.orientation);
+    }, false);
+}, false);
+```
