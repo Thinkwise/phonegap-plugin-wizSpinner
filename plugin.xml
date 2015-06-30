@@ -18,11 +18,11 @@
 
     <license>MIT</license>
 
-    <js-module src="www/phonegap/plugin/wizSpinner/wizSpinner.js" name="wizSpinnerPlugin" target="phonegap/plugin/wizSpinner/wizSpinner.js">
+    <js-module src="www/wizSpinner.js" name="wizSpinnerPlugin">
         <clobbers target="window.wizSpinner" />
     </js-module>
 
-    <asset src="www/phonegap/plugin/wizSpinner/spinner.gif" target="phonegap/plugin/wizSpinner/spinner.gif" />
+    <asset src="www/spinner.gif" target="phonegap/plugin/wizSpinner/spinner.gif" />
 
     <!-- android -->
     <platform name="android">
@@ -33,9 +33,9 @@
         </feature>
     </config-file>
     
-    <source-file src="platforms/android/src/jp/wizcorp/phonegap/plugin/wizSpinner/WizSpinnerPlugin.java" 
+    <source-file src="platforms/android/WizSpinnerPlugin.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizSpinner"/>
-    <source-file src="platforms/android/src/jp/wizcorp/phonegap/plugin/wizSpinner/WizSpinner.java" 
+    <source-file src="platforms/android/WizSpinner.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizSpinner"/> 
     <source-file src="platforms/android/res/layout/progressdialog.xml" 
             target-dir="res/layout/"/> 
@@ -53,24 +53,24 @@
             <plugin name="WizSpinnerPlugin" value="WizSpinnerPlugin"/>
         </config-file>
                
-        <header-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizActivitySpinnerView.h"
+        <header-file src="platforms/ios/WizActivitySpinnerView.h"
             target-dir="wizSpinner" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizActivitySpinnerView.m" compiler-flags="-fno-objc-arc"
+        <source-file src="platforms/ios/WizActivitySpinnerView.m" compiler-flags="-fno-objc-arc"
             target-dir="wizSpinner" />
-        <header-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizSpinnerPlugin.h"
+        <header-file src="platforms/ios/WizSpinnerPlugin.h"
             target-dir="wizSpinner" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizSpinnerPlugin.m" compiler-flags="-fno-objc-arc"
+        <source-file src="platforms/ios/WizSpinnerPlugin.m" compiler-flags="-fno-objc-arc"
             target-dir="wizSpinner" />
-        <header-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizAssetsPluginExtendCDVViewController.h"
+        <header-file src="platforms/ios/WizAssetsPluginExtendCDVViewController.h"
             target-dir="wizSpinner" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizAssetsPluginExtendCDVViewController.m" compiler-flags="-fno-objc-arc"
+        <source-file src="platforms/ios/WizAssetsPluginExtendCDVViewController.m" compiler-flags="-fno-objc-arc"
             target-dir="wizSpinner" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizAssetsPluginExtendCDVViewControllerPrivate.h"
+        <source-file src="platforms/ios/WizAssetsPluginExtendCDVViewControllerPrivate.h"
             target-dir="wizSpinner" /> 
-        <header-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/WizDebugLog.h"
+        <header-file src="platforms/ios/WizDebugLog.h"
             target-dir="wizSpinner" />
         
-        <source-file src="platforms/ios/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizSpinnerPlugin/wizSpinner/wizSpinner.plist"
+        <source-file src="platforms/ios/wizSpinner.plist"
             target-dir="wizSpinner" />
         
         <framework src="ImageIO.framework" />
